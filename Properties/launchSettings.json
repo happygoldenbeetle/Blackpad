@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "BlackNotepad (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "BlackNotepad (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
