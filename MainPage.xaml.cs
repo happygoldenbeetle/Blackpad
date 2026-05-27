@@ -12,6 +12,8 @@ namespace BlackNotepad;
 
 public sealed partial class MainPage : Page
 {
+    private const string InstrumentSerifDisplayName = "Instrument Serif";
+    private const string InstrumentSerifFontPath = "Assets/Fonts/InstrumentSerif-Regular.ttf#Instrument Serif";
     private const string PreviewSampleMarkdown = "# Markdown preview\n\nWrite **bold**, *italic*, `code`, bullets, quotes, and headings.\n\n- Quiet source\n- Live preview\n\n> Still just black when you want it.";
 
     private ComboBox? _viewModeComboBox;
@@ -76,7 +78,7 @@ public sealed partial class MainPage : Page
 
         AddSectionTitle("Editor");
         var editorCard = CreateCard();
-        _fontFamilyComboBox = CreateComboBox(["Instrument Serif", "Segoe UI", "Sitka Subheading", "Consolas"], 0);
+        _fontFamilyComboBox = CreateComboBox([InstrumentSerifDisplayName, "Segoe UI", "Sitka Subheading", "Consolas"], 0);
         _fontFamilyComboBox.SelectionChanged += FontFamilyComboBox_SelectionChanged;
         editorCard.Children.Add(CreateSettingRow("Family", "Source text font", _fontFamilyComboBox));
 
@@ -97,7 +99,7 @@ public sealed partial class MainPage : Page
 
         _previewSample = new RichTextBlock
         {
-            FontFamily = new FontFamily("Instrument Serif"),
+            FontFamily = InstrumentSerif(),
             FontSize = 28,
             Foreground = WhiteBrush(),
             TextWrapping = TextWrapping.Wrap,
@@ -210,7 +212,7 @@ public sealed partial class MainPage : Page
 
     private static FontFamily InstrumentSerif()
     {
-        return new FontFamily("Instrument Serif");
+        return new FontFamily(InstrumentSerifFontPath);
     }
 
     private void Editor_TextChanged(object sender, TextChangedEventArgs args)
@@ -342,7 +344,7 @@ public sealed partial class MainPage : Page
 
     private void FontFamilyComboBox_SelectionChanged(object sender, SelectionChangedEventArgs args)
     {
-        var fontFamily = GetSelectedComboBoxText(_fontFamilyComboBox);
+        var fontFamily = ResolveFontFamily(GetSelectedComboBoxText(_fontFamilyComboBox));
         if (string.IsNullOrWhiteSpace(fontFamily))
         {
             return;
@@ -616,6 +618,13 @@ public sealed partial class MainPage : Page
         return comboBox?.SelectedItem is ComboBoxItem selectedItem
             ? selectedItem.Content?.ToString() ?? string.Empty
             : string.Empty;
+    }
+
+    private static string ResolveFontFamily(string fontFamily)
+    {
+        return fontFamily == InstrumentSerifDisplayName
+            ? InstrumentSerifFontPath
+            : fontFamily;
     }
 
     private static bool ContainsSettingsTrigger(string text)

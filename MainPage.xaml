@@ -26,7 +26,7 @@
                 Background="#000000"
                 BorderBrush="Transparent"
                 BorderThickness="0"
-                FontFamily="Instrument Serif"
+                FontFamily="Assets/Fonts/InstrumentSerif-Regular.ttf#Instrument Serif"
                 FontSize="32"
                 Foreground="#FFFFFF"
                 HorizontalAlignment="Stretch"
@@ -60,7 +60,7 @@
                     <RichTextBlock
                         x:Name="MarkdownPreview"
                         AutomationProperties.Name="Markdown preview"
-                        FontFamily="Instrument Serif"
+                        FontFamily="Assets/Fonts/InstrumentSerif-Regular.ttf#Instrument Serif"
                         FontSize="28"
                         Foreground="#FFFFFF"
                         TextWrapping="Wrap" />

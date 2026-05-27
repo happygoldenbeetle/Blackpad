@@ -10,6 +10,7 @@ Blackpad is a minimal WinUI Markdown editor built around a distraction-free blac
 - Editor-only, split-preview, and preview-only modes
 - Full settings page
 - Supports `.md`, `.markdown`, and `.txt` files
+- Bundles the official Instrument Serif regular and italic font files under the SIL Open Font License
 
 ## Shortcuts
 
