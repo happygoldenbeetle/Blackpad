@@ -59,6 +59,7 @@
             Padding="24"
             Background="#1F1B1A"
             IsTabStop="True"
+            UseSystemFocusVisuals="False"
             VerticalScrollBarVisibility="Auto"
             Visibility="Collapsed">
             <StackPanel x:Name="SettingsContent" Spacing="12" />
