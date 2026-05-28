@@ -9,7 +9,7 @@
     mc:Ignorable="d">
 
     <Grid Background="#000000">
-        <TextBox
+        <RichEditBox
             x:Name="Editor"
             Padding="32"
             AcceptsReturn="True"
@@ -27,8 +27,9 @@
             ScrollViewer.VerticalScrollBarVisibility="Hidden"
             TextWrapping="Wrap"
             VerticalAlignment="Stretch"
-            PointerWheelChanged="Editor_PointerWheelChanged">
-            <TextBox.Resources>
+            PointerWheelChanged="Editor_PointerWheelChanged"
+            TextChanged="Editor_TextChanged">
+            <RichEditBox.Resources>
                 <SolidColorBrush x:Key="TextControlBackground" Color="#000000" />
                 <SolidColorBrush x:Key="TextControlBackgroundFocused" Color="#000000" />
                 <SolidColorBrush x:Key="TextControlBackgroundPointerOver" Color="#000000" />
@@ -38,8 +39,20 @@
                 <SolidColorBrush x:Key="TextControlForeground" Color="#FFFFFF" />
                 <SolidColorBrush x:Key="TextControlForegroundFocused" Color="#FFFFFF" />
                 <SolidColorBrush x:Key="TextControlForegroundPointerOver" Color="#FFFFFF" />
-            </TextBox.Resources>
-        </TextBox>
+            </RichEditBox.Resources>
+        </RichEditBox>
+
+        <!--  Live word/character count  -->
+        <TextBlock
+            x:Name="CountLabel"
+            Margin="0,0,20,14"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            FontFamily="Assets/Fonts/InstrumentSerif-Regular.ttf#Instrument Serif"
+            FontSize="13"
+            Foreground="#FFFFFF"
+            IsHitTestVisible="False"
+            Opacity="0.35" />
 
         <ScrollViewer
             x:Name="SettingsView"
