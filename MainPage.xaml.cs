@@ -302,6 +302,11 @@ public sealed partial class MainPage : Page
         SettingsView.Visibility = Visibility.Collapsed;
         Editor.Visibility = Visibility.Visible;
         CountLabel.Visibility = Visibility.Visible;
+
+        // RichEditBox can reset to its default paragraph format when re-rendered
+        // after a visibility change — re-apply to guarantee correctness.
+        ReapplyAllFormatting();
+
         Editor.Focus(FocusState.Programmatic);
     }
 
@@ -380,8 +385,9 @@ public sealed partial class MainPage : Page
 
     private void ApplyParagraphFormat(Action<ITextParagraphFormat> configure)
     {
-        Editor.Document.GetText(TextGetOptions.None, out var text);
-        var range = Editor.Document.GetRange(0, text.Length);
+        // Use int.MaxValue to include all paragraphs and the trailing paragraph mark,
+        // ensuring formatting applies even when the document is empty.
+        var range = Editor.Document.GetRange(0, int.MaxValue);
         configure(range.ParagraphFormat);
     }
 
