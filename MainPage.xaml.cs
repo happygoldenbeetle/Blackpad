@@ -616,7 +616,7 @@ public sealed partial class MainPage : Page
             ? 0
             : clean.Split([' ', '\n', '\r', '\t'], StringSplitOptions.RemoveEmptyEntries).Length;
 
-        CountLabel.Text = $"{words} words  ·  {chars} characters";
+        CountLabel.Text = $"{chars} · {words}";
     }
 
     // -------------------------------------------------------------------------
