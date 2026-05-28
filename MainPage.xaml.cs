@@ -295,6 +295,7 @@ public sealed partial class MainPage : Page
         Editor.Visibility = Visibility.Collapsed;
         CountLabel.Visibility = Visibility.Collapsed;
         SettingsView.Visibility = Visibility.Visible;
+        SettingsView.Focus(FocusState.Programmatic);
     }
 
     private void BackToEditor()
