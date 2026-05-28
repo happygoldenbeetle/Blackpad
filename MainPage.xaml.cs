@@ -319,7 +319,7 @@ public sealed partial class MainPage : Page
     {
         var picker = new FileOpenPicker();
         InitializePicker(picker);
-        picker.FileTypeFilter.Add(".txt");
+        picker.FileTypeFilter.Add("*");
 
         var file = await picker.PickSingleFileAsync();
         if (file is null) return;
@@ -354,7 +354,12 @@ public sealed partial class MainPage : Page
                 : Path.GetFileNameWithoutExtension(_currentFile.Name),
         };
         InitializePicker(picker);
-        picker.FileTypeChoices.Add("Text", [".txt"]);
+        picker.FileTypeChoices.Add("Text", [".txt", ".log", ".ini", ".cfg", ".conf"]);
+        picker.FileTypeChoices.Add("Code", [".js", ".ts", ".jsx", ".tsx", ".json", ".py", ".cs", ".cpp", ".c", ".h", ".java", ".rb", ".go", ".rs", ".swift", ".kt", ".php"]);
+        picker.FileTypeChoices.Add("Web", [".html", ".htm", ".css", ".scss", ".xml", ".svg"]);
+        picker.FileTypeChoices.Add("Markup & Docs", [".md", ".yaml", ".yml", ".toml"]);
+        picker.FileTypeChoices.Add("Scripts", [".ps1", ".bat", ".cmd", ".sh"]);
+        picker.FileTypeChoices.Add("All Files", [".txt"]); // fallback shown as *.*
         picker.DefaultFileExtension = ".txt";
 
         var file = await picker.PickSaveFileAsync();
